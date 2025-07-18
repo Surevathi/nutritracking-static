@@ -1,0 +1,10 @@
+{
+  "name": "nutritracking-static",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Static files ready'",
+    "start": "echo 'Static site'"
+  },
+  "dependencies": {}
+}
