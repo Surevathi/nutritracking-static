@@ -26,10 +26,31 @@
     <!-- Preload critical fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script type="module" crossorigin src="./assets/index-5V8ZI3tL.js"></script>
+    
+    <!-- Load main app CSS -->
     <link rel="stylesheet" crossorigin href="./assets/index-Csd6DfAO.css">
+    
+    <!-- Load comprehensive fixes first -->
+    <script src="./nutrition-fixes.js"></script>
+    
+    <!-- Load main app JavaScript -->
+    <script type="module" crossorigin src="./assets/index-5V8ZI3tL.js"></script>
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Initialize fixes after DOM load -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('NutriTracking v2.0.0 - All fixes loaded');
+        
+        // Apply immediate fixes
+        if (window.NutriTrackingFixes) {
+          window.NutriTrackingFixes.AuthUtils.initialize();
+          window.NutriTrackingFixes.DashboardSync.init();
+          window.NutriTrackingFixes.DidYouKnowFix.init();
+        }
+      });
+    </script>
   </body>
 </html>
