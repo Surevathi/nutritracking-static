@@ -37,11 +37,7 @@
     <script type="module" crossorigin src="./assets/index-5V8ZI3tL.js"></script>
   </head>
   <body>
-  // COMPREHENSIVE NUTRITION FIXES - Complete GitHub Integration
-// This file contains the complete inline script for GitHub deployment
-
-const COMPLETE_INLINE_SCRIPT = `
-<script>
+  <script>
 // COMPREHENSIVE NUTRITION FIXES v3.0.0 - USDA Integration
 console.log('🔧 Loading Comprehensive Nutrition Fixes with USDA Integration...');
 
@@ -57,7 +53,7 @@ const AuthSystem = {
         try {
           const user = JSON.parse(value);
           originalSetItem.call(this, 'nutritrack_auth_persist', 'true');
-          originalSetItem.call(this, 'nutritrack_auth_token', \`token_\${user.id}\`);
+          originalSetItem.call(this, 'nutritrack_auth_token', `token_${user.id}`);
           originalSetItem.call(this, 'nutritrack_session_backup', value);
           console.log('✅ Authentication persistence activated');
         } catch (e) {
@@ -98,7 +94,7 @@ const USDAFoodService = {
     if (!query || query.length < 2) return { foods: [] };
     
     // Check cache first
-    const cacheKey = \`search_\${query.toLowerCase()}\`;
+    const cacheKey = `search_${query.toLowerCase()}`;
     if (this.cache.has(cacheKey)) {
       console.log('🔍 Returning cached USDA results for:', query);
       return this.cache.get(cacheKey);
@@ -106,7 +102,7 @@ const USDAFoodService = {
     
     try {
       // Use the existing USDA API endpoint
-      const response = await fetch(\`/api/foods/search?q=\${encodeURIComponent(query)}&pageSize=50\`);
+      const response = await fetch(`/api/foods/search?q=${encodeURIComponent(query)}&pageSize=50`);
       
       if (response.ok) {
         const data = await response.json();
@@ -120,7 +116,7 @@ const USDAFoodService = {
         
         // Cache successful results
         this.cache.set(cacheKey, data);
-        console.log(\`🔍 USDA API returned \${data.foods?.length || 0} foods for "\${query}"\`);
+        console.log(`🔍 USDA API returned ${data.foods?.length || 0} foods for "${query}"`);
         return data;
       }
     } catch (error) {
@@ -185,7 +181,7 @@ const USDAFoodService = {
     );
     
     if (filteredFoods.length > 0) {
-      console.log(\`🔍 Enhanced fallback found \${filteredFoods.length} foods for "\${query}"\`);
+      console.log(`🔍 Enhanced fallback found ${filteredFoods.length} foods for "${query}"`);
       return { foods: filteredFoods, totalResults: filteredFoods.length };
     }
     
@@ -241,7 +237,7 @@ window.calculateNutrition = function(food, quantity, unit = 'grams') {
     }));
   }
   
-  console.log(\`📊 Calculated: \${quantity} \${unit} of \${food.description} = \${multiplier.toFixed(2)}x nutrition\`);
+  console.log(`📊 Calculated: ${quantity} ${unit} of ${food.description} = ${multiplier.toFixed(2)}x nutrition`);
   return result;
 };
 
@@ -258,7 +254,7 @@ const DashboardSync = {
       if (!user) return;
       
       const today = new Date().toISOString().split('T')[0];
-      const foodLogKey = \`food_logs_\${user.id}_\${today}\`;
+      const foodLogKey = `food_logs_${user.id}_${today}`;
       const foodLogs = JSON.parse(localStorage.getItem(foodLogKey) || '[]');
       
       // Calculate comprehensive nutrition totals
@@ -315,22 +311,22 @@ const DashboardSync = {
       
       // Update multiple possible selectors
       const selectors = [
-        \`[data-nutrient="\${nutrient}"] .progress-bar\`,
-        \`[data-nutrient="\${nutrient}"] .bg-primary\`,
-        \`.\${nutrient}-progress .progress-bar\`,
-        \`.\${nutrient}-bar\`
+        `[data-nutrient="${nutrient}"] .progress-bar`,
+        `[data-nutrient="${nutrient}"] .bg-primary`,
+        `.${nutrient}-progress .progress-bar`,
+        `.${nutrient}-bar`
       ];
       
       selectors.forEach(selector => {
         document.querySelectorAll(selector).forEach(el => {
           if (el.style) {
-            el.style.width = \`\${percentage}%\`;
+            el.style.width = `${percentage}%`;
             el.style.transition = 'width 0.3s ease';
           }
           
           const textEl = el.querySelector('.progress-text, .percentage, span, .text-sm');
           if (textEl) {
-            textEl.textContent = \`\${Math.round(percentage)}%\`;
+            textEl.textContent = `${Math.round(percentage)}%`;
           }
         });
       });
@@ -350,21 +346,21 @@ const DashboardSync = {
       const clampedPercentage = Math.min(Math.max(percentage, 0), 100);
       
       const selectors = [
-        \`[data-goal="\${goal}"] .progress-bar\`,
-        \`[data-goal="\${goal}"] .bg-primary\`,
-        \`.\${goal}-goal .progress-bar\`,
-        \`.\${goal}-progress\`
+        `[data-goal="${goal}"] .progress-bar`,
+        `[data-goal="${goal}"] .bg-primary`,
+        `.${goal}-goal .progress-bar`,
+        `.${goal}-progress`
       ];
       
       selectors.forEach(selector => {
         document.querySelectorAll(selector).forEach(el => {
           if (el.style) {
-            el.style.width = \`\${clampedPercentage}%\`;
+            el.style.width = `${clampedPercentage}%`;
           }
           
           const percentageEl = el.closest('.goal-card, .health-goal, [data-goal]')?.querySelector('.percentage, .goal-percentage, .text-lg');
           if (percentageEl) {
-            percentageEl.textContent = \`\${Math.round(clampedPercentage)}%\`;
+            percentageEl.textContent = `${Math.round(clampedPercentage)}%`;
           }
         });
       });
@@ -432,7 +428,7 @@ const DidYouKnowControl = {
       }
     });
     
-    console.log(\`💡 "Did You Know" rotation set to 10-second intervals for \${factElements.length} elements\`);
+    console.log(`💡 "Did You Know" rotation set to 10-second intervals for ${factElements.length} elements`);
   }
 };
 
